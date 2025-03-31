@@ -1,0 +1,29 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "printWidth": 120,
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "endOfLine": "auto",
+  "useTabs": false,
+  "react/jsx-indent": [2, 2],
+  "react/jsx-indent-props": [2, 2],
+  "overrides": [
+    {
+      "files": ["*.json", ".eslintrc", ".prettierrc"],
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": ["*.md", "*.mdx"],
+      "options": {
+        "printWidth": 100,
+        "proseWrap": "always"
+      }
+    }
+  ]
+}
