@@ -6,20 +6,6 @@ import db from '../../fireBase/fireBase';
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
   const [orders, setOrders] = useState([]);
-
-  // const CustomersJoinOrders = customers.map((user) => {
-  //   return {
-  //     Name: user.firstname,
-  //     ['Joined at']: user.joinDate,
-  //     ['Products bought']: orders
-  //       .filter((order) => {
-  //         return order.userId === user.id;
-  //       })
-  //       .map((order) => {
-  //         return { Product: order.title, Qty: order.quantity, Date: order.date };
-  //       }),
-  //   };
-  // });
   const CustomersJoinOrders = useMemo(() => {
     return customers.map((user) => ({
       Name: user.firstname,
@@ -33,10 +19,6 @@ const Customers = () => {
         })),
     }));
   }, [customers, orders]);
-  // const refinedOrdrs = CustomersJoinOrders.filter((tupple) => {
-  //   console.log(tupple['Products bought'].length > 0);
-  //   return tupple['Products bought'].length > 0;
-  // });
 
   useEffect(() => {
     getAllusers();
@@ -72,7 +54,7 @@ const Customers = () => {
   }, []);
 
   return (
-    <div>
+    <div className=" flex flex-col w-fit justify-self-center">
       <h2>Customers</h2>
       <Table data={CustomersJoinOrders} />
     </div>

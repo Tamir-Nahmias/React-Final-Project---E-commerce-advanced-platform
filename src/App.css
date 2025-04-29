@@ -3,10 +3,648 @@
   margin: 0 auto;
   /* padding: 2rem; */
   text-align: center;
+  /* background: #e4e4e4; */
+  background-color: #f7f7f7;
+  color: #2b2d42;
+  overflow: visible;
 }
 
 td,
 th {
   border: 1px solid black;
   padding: 1vh 1vw;
+}
+
+/* Table container */
+.table-container {
+  margin: 20px;
+  padding: 20px;
+  background: #f6f4ee;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Basic table styling */
+table {
+  border-collapse: collapse;
+  color: #2b2d42; /* Deep Charcoal Gray */
+  /* font-family: 'Roboto', sans-serif; */
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a40; /* Dark Blue/Purple */
+  color: #f0e6ff; /* Light text */
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #4b0082; /* Indigo */
+  color: #f0e6ff; /* Light text */
+}
+
+/* Table headers */
+th {
+  background-color: #301934; /* Deep purple */
+  padding: 6px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase; /* Slightly elevate the look */
+  border-bottom: 2px solid #e3f2fd; /* Frosted Sky Blue */
+}
+
+/* Table rows */
+td {
+  background-color: #ffffff; /* Clean white for row background */
+  color: #6d6e76; /* Muted Cool Gray */
+  padding: 6px;
+  text-align: left;
+  border-bottom: 1px solid #e3f2fd; /* Frosted Sky Blue */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover effects on rows */
+tr:hover td {
+  background-color: #e3f2fd; /* Frosted Sky Blue on hover */
+}
+
+/*------------------------------------------------------------ */
+th,
+td {
+  padding: 16px 20px;
+  text-align: left;
+}
+
+th {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #2e2e66;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #252550;
+}
+
+tbody tr:hover {
+  background-color: #6a0dad; /* A nice hover effect */
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+td {
+  font-size: 0.95rem;
+  border-bottom: 1px solid #3a3a80;
+}
+
+.generic-container {
+  background-color: #ffffff; /* White background for contrast */
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft, subtle shadow */
+  border: 3px solid #d1d1d1; /* Slightly darker gray border */
+  max-width: fit-content; /*Limit width for a more centered, contained design*/
+  width: 100%;
+}
+
+.container h1,
+.container p {
+  color: #2b2d42; /* Deep Charcoal Gray for text */
+}
+
+/* Label Styling */
+label {
+  font-size: 16px;
+  font-weight: 600; /* Bold for emphasis */
+  color: #2b2d42; /* Deep Charcoal Gray for text */
+  margin-bottom: 4px;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  text-align: start;
+  width: 100%;
+}
+
+/* Text Input Styling */
+input {
+  background-color: #ffffff; /* White background for inputs */
+  color: #2b2d42; /* Deep Charcoal Gray for text */
+  padding: 8px;
+  font-size: 16px;
+  border: 2px solid #d1d1d1; /* Gray border */
+  border-radius: 8px; /* Rounded corners for inputs */
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+input[type='checkbox'] {
+  width: fit-content;
+  height: fit-content;
+}
+
+/* Focused state of text input */
+input:focus {
+  border-color: #00a6a6; /* Teal border on focus */
+  box-shadow: 0 0 5px rgba(0, 166, 166, 0.5); /* Subtle shadow for focus */
+  outline: none;
+}
+
+/* Input Placeholder Text */
+input::placeholder {
+  color: #6d6e76; /* Muted gray for placeholder text */
+  font-style: italic; /* Subtle style */
+}
+/* Elegant Greenish Lime .button-for-forms Styling */
+.button-for-forms {
+  background-color: #a3d9a5; /* Soft lime green background */
+  color: #2b2d42; /* Deep Charcoal Gray text color */
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #a3d9a5; /* Soft lime green border */
+  border-radius: 8px; /* Rounded corners for a smooth, modern look */
+  width: 100%; /* Full-width .button-for-forms */
+  cursor: pointer;
+  /* font-family: 'Roboto', sans-serif; */
+  text-transform: uppercase; /* Adds a touch of sophistication */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* .button-for-forms Hover Effect */
+.button-for-forms:hover {
+  background-color: #6b9c6a; /* Muted dark green background on hover */
+  color: #ffffff; /* White text on hover */
+  border-color: #6b9c6a; /* Matching dark green border */
+}
+
+/* .button-for-forms Focused Effect */
+.button-for-forms:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(107, 156, 106, 0.4); /* Soft focus shadow */
+}
+
+/* Disabled .button-for-forms Styling */
+.button-for-forms:disabled {
+  background-color: #d1e2d1; /* Lighter lime green when disabled */
+  color: #b0b0b0; /* Muted gray text */
+  border-color: #d1e2d1; /* Lighter lime green border */
+  cursor: not-allowed;
+}
+
+.no-center {
+  place-items: unset; /* Reset grid centering */
+}
+
+.center {
+  height: fit-content;
+  place-content: center;
+}
+
+.allow-label {
+  width: fit-content;
+}
+
+.content-card {
+  background-color: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 20rem;
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures each card fills the available height */
+  max-height: 60vh;
+  justify-content: space-between; /* Evenly distributes content */
+}
+
+/* .card-text {
+  /* color: #4a4a4a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem; */
+
+.content-card > div > label {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.content-card > div > input {
+  width: 50px;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.content-card > input:focus {
+  border-color: #6b7280;
+  box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.5);
+}
+
+.content-card > div > button {
+  margin-top: 1rem;
+  width: 50px;
+  background-color: #1f2937;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.content-card > div > button:hover {
+  background-color: #374151;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+  gap: 1rem; /* Spacing between items */
+  align-items: stretch; /* Ensures all cards in a row are the same height */
+}
+
+.card-list li {
+  list-style: none; /* Remove bullet points */
+}
+
+.cart-container {
+  display: flex;
+  position: relative; /*for fixing the arrow img*/
+  flex-direction: column;
+  align-items: start;
+  min-width: 40%;
+  background-color: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  background-color: #d1d5db;
+}
+.cart-container div button {
+  /* margin-top: 1rem; */
+  width: fit-content;
+  background-color: #1f2937;
+  color: white;
+  /* padding: 0.5rem; */
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.cart-container div button:hover {
+  background-color: #374151;
+}
+#closing-button {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#order-button {
+  background-color: #a3d9a5;
+  color: #4a4a4a;
+}
+
+.sticky-cart {
+  position: sticky !important;
+  top: 20px !important;
+  height: fit-content;
+  align-self: flex-start;
+  width: 40%;
+  transition: transform 1s ease; /* Smooth transition for sliding */
+}
+.sticky-cart-reverse {
+  position: sticky !important;
+  top: 20px !important;
+  height: fit-content;
+  align-self: flex-start;
+  width: 40%;
+  transition: transform 1s ease; /* Smooth transition for sliding */
+  transform: translateX(calc(-100% + 40px)); /* Slide left to the width of the SVG */
+}
+
+#products-and-cart {
+  overflow: visible;
+}
+
+.arrow-svg {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 40px;
+  transition: transform 0.3s ease;
+  transform: translateY(-50%) rotate(180deg);
+}
+.arrow-svg:hover path {
+  stroke: blue; /* Changes color on hover */
+}
+.arrow-svg-reverse {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 40px;
+  transition: transform 0.3s ease;
+  transform: translateY(-50%);
+}
+.manage-prod-container {
+  background-color: #b0b0b0;
+  padding: 50px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 50vw;
+  color: #6a2c91;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-block: 25px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures each card fills the available height */
+}
+
+.manage-prod-container > div > label {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.manage-prod-container > div > input {
+  width: 50px;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.manage-prod-container > input:focus {
+  border-color: #6b7280;
+  box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.5);
+}
+
+.prod-upper-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+  gap: 1rem; /* Spacing between items */
+  max-height: 650px;
+}
+.categories-list > div > button,
+.manage-prod-container > div > button {
+  /* margin-top: 1rem; */
+  margin-inline: 1rem;
+  width: fit-content;
+  background-color: #3b82f6; /* Tailwind's blue-500 */
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.categories-list > div > button:hover,
+.manage-prod-container > div > button:hover {
+  background-color: #2563eb; /* Tailwind's blue-600 on hover */
+  transform: scale(1.05); /* slight pop on hover */
+}
+
+#remove-btn {
+  background-color: #e74c3c; /* Elegant red */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#remove-btn:hover {
+  background-color: #c0392b; /* Slightly darker red on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+#remove-btn:active {
+  background-color: #a93226; /* Even darker red on active */
+  transform: translateY(0);
+}
+
+.manage-prod-container {
+  margin-left: 3vw;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+h4 {
+  font-size: 1rem;
+  font-weight: 450;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #8a2be2;
+}
+
+.main-categories-container {
+  display: inline-block;
+}
+.navigation-bar {
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  margin-block: 20px;
+}
+body {
+  overflow-x: hidden;
+}
+
+.navigation-bar {
+  align-items: center;
+  background-color: #2e1a47; /* Dark purplish background */
+  padding: 15px 0;
+}
+
+.navigation-bar a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  margin: 0 15px;
+  font-size: 18px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navigation-bar a:hover {
+  background-color: #6a2c91; /* Dark neon purplish hover */
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.navigation-bar a.active {
+  background-color: #9b4d99; /* Neon purplish color for active tab */
+}
+
+.div-container-overflow {
+  width: 100%; /* You can adjust the width as needed */
+  max-height: 15vh;
+  overflow-y: auto; /* This will add a vertical scrollbar when content exceeds max height */
+  border: 1px solid #ddd; /* Optional, for a border around the container */
+  padding: 15px; /* Optional, for spacing inside the container */
+  background-color: #f7f7f7; /* Optional, for a background color */
+}
+
+.button-add-new {
+  background-color: #28a745; /* Bright Green */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(40, 167, 69, 0.2);
+}
+
+.button-add-new:hover {
+  background-color: #218838; /* Darker Green */
+  transform: translateY(-5px); /* Lift the button */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15), 0 15px 30px rgba(40, 167, 69, 0.3);
+}
+
+.button-add-new:focus {
+  outline: none;
+  border: 2px solid #1e7e34; /* Green Focus Border */
+}
+
+.button-add-new:active {
+  background-color: #1e7e34; /* Darker Green on Click */
+  transform: translateY(2px); /* Slight Pressed Effect */
+}
+
+/* Main select dropdown button styling */
+.beautiful-dropdown {
+  background: linear-gradient(145deg, #6a11cb, #2575fc); /* Cold purple-blue gradient for the button */
+  color: white;
+  font-size: 16px; /* Slightly smaller font size for a smaller height */
+  padding: 10px 18px; /* Adjust padding to reduce height */
+  border: 2px solid #5e5c5b; /* Subtle dark border */
+  border-radius: 6px; /* Rounded corners */
+  cursor: pointer;
+  width: 200px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for shine */
+  appearance: none; /* Removes default styling, allowing custom styles */
+  position: relative; /* For positioning the custom arrow */
+}
+
+/* Hover state for the button */
+.beautiful-dropdown:hover {
+  background: linear-gradient(145deg, #2575fc, #6a11cb); /* Reverse the gradient on hover */
+  border-color: #4c4b48; /* Darker border on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+}
+
+/* Focus effect on the button */
+.beautiful-dropdown:focus {
+  outline: none;
+  border-color: #ff6f91; /* Light pink border on focus */
+  box-shadow: 0 0 8px rgba(255, 111, 145, 0.5); /* Soft glow effect */
+}
+
+/* Remove default dropdown arrow in IE and Firefox */
+.beautiful-dropdown::-ms-expand {
+  display: none;
+}
+
+/* Custom down arrow styling */
+.beautiful-dropdown::after {
+  content: ' ▼'; /* Downward arrow symbol */
+  font-size: 18px; /* Size of the arrow */
+  color: white;
+  position: absolute;
+  right: 10px; /* Position the arrow to the right */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center the arrow */
+}
+
+/* Dropdown options styling */
+.beautiful-dropdown option {
+  background-color: white; /* Background color of the dropdown options */
+  color: #333; /* Dark text for readability */
+  padding: 10px; /* Padding for options */
+  border: none; /* Remove default borders from options */
+  text-align: left; /* Align text to the left */
+}
+
+/* Hover state for dropdown options */
+.beautiful-dropdown option:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
+  color: #6a11cb; /* Purple text color on hover */
+}
+
+.label-customer {
+  display: inline-block;
+  background-color: #fdf8f2; /* Vanilla white */
+  color: #2e2e80; /* Dark bluish/purplish text */
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 2rem; /* Medium font size */
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  width: fit-content;
+}
+
+#category-input {
+  width: 60% !important;
+  margin-left: 1rem;
+}
+
+#category-container {
+  width: 800px;
+}
+
+.filters-input {
+  /* width: 100% !important; */
+  height: fit-content !important;
+}
+#category-filter,
+#range-price-filter,
+#search-filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#buyesCardButtonSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#buyesCardButtonSection input {
+  width: 4rem;
+  text-align: center;
 }

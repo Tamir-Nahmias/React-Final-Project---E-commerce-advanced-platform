@@ -1,50 +1,29 @@
-// import { useSelector } from 'react-redux';
-// import CartItem from './CartItem';
-
-// const Cart = () => {
-//   const state = useSelector((state) => state.order);
-//   const orders = Object.values(state);
-//   // console.log('from cart:', orders, 'type of state:', typeof orders, Array.isArray(orders));
-//   return (
-//     <div>
-//       Cart
-//       {orders
-//         .filter((order) => {
-//           return order?.amount !== 0;
-//         })
-//         .map((order) => {
-//           return <CartItem order={order} key={order?.title} />;
-//         })}
-//       {/* <CartItem order={or}/> */}
-//       Total :
-//       {orders
-//         .filter((order) => {
-//           return Number(order?.amount);
-//         })
-//         .reduce((accumalator, currentOrder) => {
-//           // console.log(preOrder.price, currentOrder.amount);
-//           return accumalator + currentOrder.price * currentOrder.amount;
-//         }, 0)}
-//     </div>
-//   );
-// };
-
-// export default Cart;
-
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import db from '../../fireBase/fireBase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 
-const Cart = () => {
+const Cart = ({ setIsCartSlided, isCartSlided }) => {
   const orderState = useSelector((state) => state.order); // Get the entire order state
   const activeUser = useSelector((state) => state.activeUser);
-  console.log(activeUser);
+  const inventoryBought = useSelector((state) => state.inventory_bought);
+  const [isClickedSvg, setIsClickedSvg] = useState(false);
+  const handleOnClickSvg = (e) => {
+    setIsClickedSvg(!isClickedSvg);
+    setIsCartSlided(!isCartSlided);
+  };
 
+  // Use useMemo to avoid unnecessary filtering computations
+  const orders = useMemo(() => {
+    return Object.values(orderState).filter((order) => order?.amount !== 0);
+  }, [orderState]); // Recalculate only when orderState changes
+
+  console.log('orders : ', orders);
   const dispatch = useDispatch();
-  const addOrder = () => {
-    orders.map((order) => {
+
+  const addOrder = async () => {
+    for (const order of orders) {
       const obj = {
         userId: activeUser.id,
         title: order.title,
@@ -52,21 +31,41 @@ const Cart = () => {
         total: order.amount * order.price,
         date: new Date().toLocaleDateString().replaceAll('.', '/'),
       };
-      addDoc(collection(db, 'orders'), obj);
-    });
+      await addDoc(collection(db, 'orders'), obj);
+
+      const productRef = doc(db, 'products', order.categoryId);
+
+      // Fetch the current product data from Firestore
+      const productSnap = await getDoc(productRef);
+      if (productSnap.exists()) {
+        const productData = productSnap.data();
+        const currentBought = Number(productData.bought || 0);
+        const currentInventory = Number(productData.inventory || 0);
+        dispatch({
+          type: 'UPDATE_INVENTORY_BOUGHT',
+          payload: {
+            ...order,
+          },
+        });
+        if (activeUser.isAllowing) {
+          console.log('order:', order);
+          await updateDoc(productRef, {
+            bought: currentBought + order.amount,
+            inventory: Math.max(currentInventory - order.amount, 0),
+          });
+        } else {
+          await updateDoc(productRef, {
+            inventory: Math.max(currentInventory - order.amount, 0),
+          });
+        }
+      }
+    }
     dispatch({ type: 'DELETE', payload: {} });
   };
 
-  // dispatch({ type: 'DELETE', payload: {} });
-
-  // Use useMemo to avoid unnecessary filtering computations
-  const orders = useMemo(() => {
-    return Object.values(orderState).filter((order) => order?.amount !== 0);
-  }, [orderState]); // Recalculate only when orderState changes
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-      Cart
+    <div className="cart-container">
+      <h3>Cart</h3>
       {orders.map((order) => (
         <CartItem order={order} key={order?.title} />
       ))}
@@ -75,9 +74,19 @@ const Cart = () => {
         {orders.reduce((accumulator, currentOrder) => {
           return accumulator + currentOrder.price * currentOrder.amount;
         }, 0)}
-        <button onClick={addOrder}>Order</button>
+        <button id="order-button" onClick={addOrder}>
+          Order
+        </button>
         {/* <button onClick={reset}>Reset</button> */}
       </div>
+      <svg
+        className={!isClickedSvg ? 'arrow-svg' : 'arrow-svg-reverse'}
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        onClick={handleOnClickSvg}
+      >
+        <path d="M10 20l6-6-6-6" stroke="black" stroke-width="2" fill="none" />
+      </svg>
     </div>
   );
 };

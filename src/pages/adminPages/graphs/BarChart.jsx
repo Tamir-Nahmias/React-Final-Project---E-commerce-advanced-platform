@@ -26,6 +26,29 @@ const BarChart = ({ dataForBar }) => {
     [selectedUserBarDisplay]
   );
 
+  // 1. Combine values and labels together
+  const combined = dataValues.map((value, index) => ({
+    label: dataLables[index],
+    value: value,
+  }));
+
+  // 2. Sort descending by value
+  const sorted = combined.sort((a, b) => b.value - a.value);
+
+  // 3. Separate back into sorted arrays
+  const sortedLabels = sorted.map((item) => item.label);
+  const sortedDataValues = sorted.map((item) => item.value);
+
+  // 4. Now use these sorted arrays
+  const max = Math.max(...sortedDataValues);
+  const min = Math.min(...sortedDataValues);
+
+  const getColorForValue = (value) => {
+    const ratio = (value - min) / (max - min); // Normalize 0-1
+    const hue = (1 - ratio) * 240; // 240 = blue, 0 = red in HSL
+    return `hsl(${hue}, 100%, 50%)`;
+  };
+
   const optionHasChanged = useMemo(() => {
     dataForBar
       .filter((option) => option.name === selectedUserBarDisplay)
@@ -36,13 +59,15 @@ const BarChart = ({ dataForBar }) => {
   }, [selectedUserBarDisplay]);
 
   const data = {
-    labels: dataLables, // X-axis labels
+    labels: sortedLabels, // X-axis labels
     datasets: [
       {
         label: 'Sales Data',
-        data: dataValues, // Y-axis data values
-        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
-        borderColor: 'rgba(75, 192, 192, 1)', // Bar border color
+        data: sortedDataValues, // Y-axis data values
+        // backgroundColor: 'rgba(138, 43, 226, 0.2)', // Light purple background
+        backgroundColor: sortedDataValues.map((value) => getColorForValue(value)),
+        borderColor: 'rgba(138, 43, 226, 1)', // Solid purple border
+
         borderWidth: 1,
       },
     ],
@@ -54,15 +79,20 @@ const BarChart = ({ dataForBar }) => {
       title: {
         display: true,
         text: 'Products Quantity Per Customer',
+        font: {
+          size: 20, // Title font size
+        },
       },
     },
   };
   return (
-    <div style={{ height: '400px' }}>
+    <div className="w-200 flex-row content-around  justify-around">
       <div>
-        <label htmlFor="customer">Customer : </label>
-        <select id="customer" name="customer" onChange={onChangeOptionHandler}>
-          <option value={null}></option>
+        <label className="label-customer" htmlFor="customer">
+          Customer :{' '}
+        </label>
+        <select className="beautiful-dropdown" id="customer" name="customer" onChange={onChangeOptionHandler}>
+          <option value={null}>Select A customer...</option>
           {dataForBar.map((customer) => (
             <option value={customer.name} key={customer.id}>
               {customer.name}

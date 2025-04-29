@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Table from '../../Table';
 import db from '../../fireBase/fireBase';
 import { addDoc, collection, doc, onSnapshot, query, updateDoc } from 'firebase/firestore';
@@ -9,19 +9,81 @@ import CategoryDropDownList from './CategoryDropDownList';
 const ProductComp = ({ data }) => {
   const [product, setproduct] = useState({});
   const [selectedOption, setSelectedOption] = useState(data.category);
+  const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [userOrdersTable, setUserOrdersTable] = useState([]);
+  const [loadingUsers, setLoadingUsers] = useState(true);
+  const [loadingOrders, setLoadingOrders] = useState(true);
 
-  const inputHandler = (e) => {
-    setproduct({ ...product, [e.target.name]: e.target.value });
-    if (e.target.name === 'category') {
-      setSelectedOption(e.target.value);
-    }
-  };
+  useEffect(() => {
+    const qu = query(collection(db, 'users'));
+    onSnapshot(qu, (querySnapShot) => {
+      setUsers(
+        querySnapShot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        })
+      );
+      setLoadingUsers(false);
+    });
 
-  const saveHandler = () => updateDoc(doc(db, 'products', data.id), product);
+    const qo = query(collection(db, 'orders'));
+    onSnapshot(qo, (querySnapShot) => {
+      setOrders(
+        querySnapShot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        })
+      );
+      setLoadingOrders(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (loadingUsers || loadingOrders) return; // Don't run until both are loaded
+
+    const temp = orders.filter((order) => order.title === data.title);
+    setFilteredOrders(temp);
+  }, [orders, loadingUsers, loadingOrders]); // Run when orders or loading states change
+
+  useEffect(() => {
+    if (loadingUsers || loadingOrders) return; // Don't run until both are loaded
+
+    const userOrders = users.map((user) => {
+      const userOrders = filteredOrders.filter((order) => order.userId === user.id);
+      return userOrders.map((order) => ({
+        name: user.firstname,
+        qty: order.quantity,
+        date: order.date,
+      }));
+    });
+
+    // Flatten the resulting array and set it to the table state
+    setUserOrdersTable(userOrders.flat());
+  }, [users, filteredOrders, loadingUsers, loadingOrders]);
+
+  const inputHandler = useCallback(
+    (e) => {
+      setproduct({ ...product, [e.target.name]: e.target.value });
+      if (e.target.name === 'category') {
+        setSelectedOption(e.target.value);
+      }
+    },
+    [product]
+  );
+
+  const saveHandler = useCallback(() => {
+    updateDoc(doc(db, 'products', data.id), product);
+  }, [product]);
 
   return (
-    <div id="manage-prod-container">
-      <div className="prod-upper-content" style={{ display: 'grid' }}>
+    <div className="manage-prod-container">
+      <div className="prod-upper-content">
         <div>
           <label>Title : </label>
           <input name="title" type="text" onChange={inputHandler} defaultValue={data.title}></input>
@@ -52,8 +114,14 @@ const ProductComp = ({ data }) => {
           <input name="link" type="text" onChange={inputHandler} defaultValue={data.link}></input>
         </div>
         <div>
-          A Table dispaly
-          {/* <Table /> */}
+          <label>Inventory : </label>
+          <input type="number" name="inventory" onChange={inputHandler} defaultValue={data.inventory}></input>
+        </div>
+        <div>
+          <label>Brought By : </label>
+          <div className="div-container-overflow">
+            <Table data={userOrdersTable} />
+          </div>
         </div>
       </div>
 

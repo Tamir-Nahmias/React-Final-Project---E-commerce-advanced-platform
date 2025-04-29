@@ -39,21 +39,25 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Next generation E-commerce platform</h1>
-      <div>
-        <label>User name : </label>
-        <input type="text" name="username" onChange={handleChange}></input>
-      </div>
-      <div>
-        <label>Password : </label>
-        <input type="password" name="password" onChange={handleChange}></input>
-      </div>
-      {isWrongCredentials && <p style={{ color: 'red' }}>Wrong user or password</p>}
+    <div className="center">
+      <div className="generic-container">
+        <h2>Next generation E-commerce platform</h2>
+        <div className=" mt-2.5">
+          <label>User name : </label>
+          <input type="text" name="username" onChange={handleChange}></input>
+        </div>
+        <div>
+          <label>Password : </label>
+          <input type="password" name="password" onChange={handleChange}></input>
+        </div>
+        {isWrongCredentials && <p style={{ color: 'red' }}>Wrong user or password</p>}
 
-      <button onClick={handleLogIn}>Login</button>
-      <div>
-        New user? <Link to="/new-user-registration">Register</Link>
+        <button className="button-for-forms mt-8" onClick={handleLogIn}>
+          Login
+        </button>
+        <div>
+          New user? <Link to="/new-user-registration">Register</Link>
+        </div>
       </div>
     </div>
   );

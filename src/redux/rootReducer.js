@@ -2,6 +2,10 @@ const initialState = {
   users: [],
   activeUser: {},
   order: {},
+  inventory_bought: {
+    productinventory: 0,
+    boughtPerProduct: 0,
+  },
 };
 
 import { ADD, DELETE, UPDATE, UPLOAD } from './consts';
@@ -12,7 +16,6 @@ const reducer = (state = initialState, action) => {
       return { ...state, activeUser: { ...action.payload } };
     case 'ADDPRODUCT':
       // debugger;
-      console.log('this is from the redux:', state.order);
       return {
         ...state,
         order: {
@@ -22,28 +25,60 @@ const reducer = (state = initialState, action) => {
             title: action.payload.title,
             price: action.payload.price,
             amount: Math.max((state.order[action.payload.title]?.amount || 0) + action.payload.change, 0),
+            category: action.payload.category,
+            categoryId: action.payload.categoryId,
+            bought: state.order[action.payload.title]?.bought || 0,
+            inventory: state.order[action.payload.title]?.inventory || 0,
+
             // amount: action.payload.amount + action.payload.change,
           },
         },
       };
 
-    case DELETE:
-      return {
-        ...state,
-        order: {},
-      };
-    case 'REMOVE_FROM_CART':
+    case 'UPDATE_INVENTORY_BOUGHT':
       return {
         ...state,
         order: {
           ...state.order,
           [action.payload.title]: {
             ...state.order[action.payload.title],
-            amount: 0,
-            // amount: action.payload.amount + action.payload.change,
+            title: action.payload.title,
+            price: action.payload.price,
+            amount: Math.max((state.order[action.payload.title]?.amount || 0) + action.payload.change, 0),
+            category: action.payload.category,
+            categoryId: action.payload.categoryId,
+            bought: (state.order[action.payload.title]?.bought || 0) + action.payload.amount, // Accumulate bought
+            inventory: Math.max((state.order[action.payload.title]?.inventory || 0) - action.payload.amount, 0), // Ensure no negative inventory
           },
         },
       };
+
+    case DELETE:
+      console.log('this is from the redux:', state.order);
+      return {
+        ...state,
+        order: {},
+      };
+    // case 'REMOVE_FROM_CART':
+    //   return {
+    //     ...state,
+    //     order: {
+    //       ...state.order,
+    //       [action.payload.title]: {
+    //         ...state.order[action.payload.title],
+    //         amount: 0,
+    //       },
+    //     },
+    //   };
+    case 'REMOVE_FROM_CART': {
+      const newOrder = { ...state.order };
+      delete newOrder[action.payload.title]; // Remove product from state
+
+      return {
+        ...state,
+        order: newOrder,
+      };
+    }
 
     case UPLOAD: {
       return { ...state, users: action.payload };

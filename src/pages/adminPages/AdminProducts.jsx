@@ -8,10 +8,9 @@ const AdminProducts = () => {
   const PRODUCTS = 'products';
 
   const addHandler = () =>
-    addDoc(collection(db, PRODUCTS), { title: '', category: '', description: '', price: 0, link: '' });
+    addDoc(collection(db, PRODUCTS), { title: '', category: '', description: '', price: 0, link: '', inventory: 0 });
 
   useEffect(() => {
-    console.log('from manage product use effect');
     getAllDocs();
   }, []);
 
@@ -30,13 +29,15 @@ const AdminProducts = () => {
   };
 
   return (
-    <div>
-      <h4>Manage Products</h4>
+    <div className="main-categories-container">
+      <h2>Manage Products</h2>
       {products.map((product) => {
         return <ProductComp key={product.id} data={product} />;
       })}
 
-      <button onClick={addHandler}>Add new</button>
+      <button className="button-add-new" onClick={addHandler}>
+        Add new
+      </button>
     </div>
   );
 };

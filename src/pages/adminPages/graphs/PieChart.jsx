@@ -40,6 +40,9 @@ const PieChart = ({ dataForPie }) => {
       title: {
         display: true,
         text: 'Total Sold Products',
+        font: {
+          size: 20, // Title font size
+        },
       },
       datalabels: {
         color: '#fff', // White text
@@ -57,7 +60,7 @@ const PieChart = ({ dataForPie }) => {
   };
 
   return (
-    <div style={{ height: '400px', width: '400px' }}>
+    <div className="mt-10 h-140 w-140 my-4">
       <Pie data={data} options={options} />
     </div>
   );

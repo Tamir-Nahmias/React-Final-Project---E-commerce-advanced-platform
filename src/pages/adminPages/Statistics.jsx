@@ -52,12 +52,9 @@ const Statistics = () => {
 
   const sumTotalPerCustomer = useMemo(() => {
     const sumObj = {};
-    orders.map((orderA) => {
-      orders.map((orderB) => {
-        if (orderA.title === orderB.title && orderA.id !== orderB.id) {
-          sumObj[orderA.title] = (sumObj[orderA.title] ?? 0) + orderA.quantity + orderB.quantity;
-        }
-      });
+
+    orders.forEach((order) => {
+      sumObj[order.title] = (sumObj[order.title] ?? 0) + order.quantity;
     });
     setTotalPerProduct(sumObj);
   }, [orders]);
@@ -73,18 +70,13 @@ const Statistics = () => {
             acc[order.title] = (acc[order.title] ?? 0) + order.quantity;
             return acc;
           }, {}),
-        // .map((order) => ({
-        //   Product: order.title,
-        //   Qty: order.quantity,
-        // })),
       }))
     );
   }, [customers, orders]);
 
   return (
-    <div>
-      Statistics
-      {console.log(totalPerCustomer)}
+    <div className="flex flex-col place-items-center">
+      <h2>Statistics</h2>
       <BarChart dataForBar={totalPerCustomer} />
       <PieChart dataForPie={totalPerProduct} />
     </div>

@@ -28,8 +28,8 @@ const Orders = () => {
   }, []);
 
   return (
-    <div>
-      <h4>My orders</h4>
+    <div className=" flex flex-col w-fit justify-self-center">
+      <h2>My orders</h2>
       <Table data={closedOrders} />
     </div>
   );

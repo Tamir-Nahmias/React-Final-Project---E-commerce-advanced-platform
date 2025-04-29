@@ -21,14 +21,18 @@ const CategoryComp = ({ categoryName, categories, setCategories, id }) => {
   };
 
   return (
-    <div>
-      {isTextShow ? (
-        <input type="text" defaultValue={categoryName} onChange={(e) => setUpdatedName(e.target.value)}></input>
-      ) : (
-        <label>{categoryName}</label>
-      )}
+    <div className=" w-fit  flex justify-self-center p-1.5 m-1.5  items-center py-4">
+      <div className=" min-w-45">
+        {isTextShow ? (
+          <input type="text" defaultValue={categoryName} onChange={(e) => setUpdatedName(e.target.value)}></input>
+        ) : (
+          <label className="w-fit">{categoryName}</label>
+        )}
+      </div>
       <button onClick={handleUpdate}>Update</button>
-      <button onClick={handleRemove}>Remove</button>
+      <button id="remove-btn" onClick={handleRemove}>
+        Remove
+      </button>
     </div>
   );
 };

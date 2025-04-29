@@ -6,30 +6,21 @@ const AdminDashBoard = () => {
   const adminName = useSelector((state) => state.activeUser.firstname);
 
   return (
-    <div>
-      <header
-        style={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-        }}
-      >
-        <p>Hello , {adminName}</p>
-        <Link to="/">Log out</Link>
-      </header>
+    <div className="no-center">
+      <div>
+        <header className=" justify-items-end mr-10">
+          <h3>Hello , {adminName}</h3>
+          <Link to="/">Log out</Link>
+        </header>
 
-      <div
-        style={{
-          width: '100vw',
-          display: 'flex',
-          justifyContent: 'space-evenly',
-        }}
-      >
-        <Link to="categories">Categories</Link>
-        <Link to="products">Products</Link>
-        <Link to="customers">Customers</Link>
-        <Link to="statistics">Statistics</Link>
+        <div className="navigation-bar">
+          <Link to="categories">Categories</Link>
+          <Link to="products">Products</Link>
+          <Link to="customers">Customers</Link>
+          <Link to="statistics">Statistics</Link>
+        </div>
+        <Outlet />
       </div>
-      <Outlet />
     </div>
   );
 };

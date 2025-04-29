@@ -80,16 +80,17 @@ const UserForm = ({ isToUpdate }) => {
           defaultValue={isToUpdate ? activeUser.password : ''}
         ></input>
       </div>
-      <div>
+      <div className="flex justify-around items-center">
         <input
           type="checkbox"
           onChange={(e) => setDetails({ ...details, isAllowing: e.target.checked })}
           // TODO : think of a way to show the current checked status from db
           // maybe build a small component to be sent with props or think of a custom hooks
+          defaultChecked={isToUpdate ? activeUser.isAllowing : false}
         ></input>
-        <label>Allow others to see my orders</label>
+        <label className="allow-label">Allow others to see my orders</label>
       </div>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="submit">
+      <button className="button-for-forms" type="submit">
         {isToUpdate ? 'Update' : 'Create'}
       </button>
       <Link to="/">Back</Link>

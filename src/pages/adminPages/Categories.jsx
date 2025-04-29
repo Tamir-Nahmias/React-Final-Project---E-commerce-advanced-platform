@@ -16,7 +16,7 @@ const Categories = () => {
     //Adding the tupple to db
     addDocument(CATEGORIES, { name: categoryName });
     setCategoryName('');
-    //adding the new insert to local state variablr array
+    //adding the new insert to local state variable array
     // setCategories([...categories, { name: categoryName }]);
   };
 
@@ -37,9 +37,9 @@ const Categories = () => {
   }, []);
 
   return (
-    <div>
+    <div className="w-fit flex flex-col justify-self-center items-center">
       {console.log('from dom Categories')}
-      <h4>Categories</h4>
+      <h2>Categories</h2>
       <div id="category-container">
         <div className="categories-list">
           {categories.map((category) => (
@@ -52,15 +52,17 @@ const Categories = () => {
             />
           ))}
         </div>
-        <div>
-          <label></label>
+        <div className=" flex-row">
+          <button className="button-add-new" onClick={addHandler}>
+            Add
+          </button>
           <input
+            id="category-input"
             type="text"
             placeholder="Add new category..."
             onChange={(e) => setCategoryName(e.target.value)}
             value={categoryName}
           ></input>
-          <button onClick={addHandler}>Add</button>
         </div>
       </div>
     </div>

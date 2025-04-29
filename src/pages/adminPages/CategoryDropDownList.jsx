@@ -26,9 +26,15 @@ const CategoryDropDownList = ({ onChangeEventHandler = () => {}, selectedOption 
   };
 
   return (
-    <div>
+    <div id="category-filter">
       <label htmlFor="category">Category : </label>
-      <select id="category" name="category" value={selectedOption} onChange={onChangeEventHandler}>
+      <select
+        className="beautiful-dropdown"
+        id="category"
+        name="category"
+        value={selectedOption}
+        onChange={onChangeEventHandler}
+      >
         <option value="all">All</option>
         {categories.map((category) => (
           <option value={category.name.toLowerCase()} key={category.id}>
