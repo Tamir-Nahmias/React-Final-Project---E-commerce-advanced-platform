@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Link, Outlet, useNavigate } from 'react-router';
+import { Link, Outlet } from 'react-router';
 
 const UserDashBoard = () => {
   const state = useSelector((state) => state.activeUser);
@@ -16,7 +16,6 @@ const UserDashBoard = () => {
         <Link to="my-account">My account</Link>
         <Link to="my-orders">My orders</Link>
         <Link to="products">products</Link>
-        {/* <Link  to="/">Sign out</Link> */}
       </div>
       <Outlet />
     </div>

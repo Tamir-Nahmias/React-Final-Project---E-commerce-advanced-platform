@@ -3,6 +3,8 @@ import Table from '../../Table';
 import db from '../../fireBase/fireBase';
 import { addDoc, collection, doc, onSnapshot, query, updateDoc } from 'firebase/firestore';
 import CategoryDropDownList from './CategoryDropDownList';
+import { getAllDocs } from '../../utilFunctions/util';
+import { ORDERS, PRODUCTS, USERS } from '../../utilFunctions/collectionsName';
 
 // A-D-M-I-N PRODUCT
 // data is the specific product
@@ -17,31 +19,10 @@ const ProductComp = ({ data }) => {
   const [loadingOrders, setLoadingOrders] = useState(true);
 
   useEffect(() => {
-    const qu = query(collection(db, 'users'));
-    onSnapshot(qu, (querySnapShot) => {
-      setUsers(
-        querySnapShot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-      setLoadingUsers(false);
-    });
-
-    const qo = query(collection(db, 'orders'));
-    onSnapshot(qo, (querySnapShot) => {
-      setOrders(
-        querySnapShot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-      setLoadingOrders(false);
-    });
+    getAllDocs(setUsers, USERS);
+    setLoadingUsers(false);
+    getAllDocs(setOrders, ORDERS);
+    setLoadingOrders(false);
   }, []);
 
   useEffect(() => {
@@ -78,7 +59,7 @@ const ProductComp = ({ data }) => {
   );
 
   const saveHandler = useCallback(() => {
-    updateDoc(doc(db, 'products', data.id), product);
+    updateDoc(doc(db, PRODUCTS, data.id), product);
   }, [product]);
 
   return (

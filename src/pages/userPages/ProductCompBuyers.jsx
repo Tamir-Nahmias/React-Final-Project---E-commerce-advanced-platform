@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { ADDPRODUCT } from '../../redux/consts';
 
 const ProductCompBuyers = ({ product }) => {
   const stateAmount = useSelector((state) => {
@@ -10,9 +11,8 @@ const ProductCompBuyers = ({ product }) => {
 
   const handleClick = useCallback(
     (e) => {
-      console.log('product from the right hand side products:', product);
       dispatch({
-        type: 'ADDPRODUCT',
+        type: ADDPRODUCT,
         payload: {
           ...product,
           amount: stateAmount,
@@ -20,10 +20,6 @@ const ProductCompBuyers = ({ product }) => {
           change: e.target.name === 'plus' ? 1 : -1,
         },
       });
-      // dispatch({
-      //   type: 'UPDATE_INVENTORY_BOUGHT',
-      //   payload: {  },
-      // });
     },
     [dispatch, stateAmount]
   );

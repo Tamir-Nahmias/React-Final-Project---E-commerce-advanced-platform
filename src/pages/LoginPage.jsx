@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { SETACTIVE } from '../redux/consts';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -17,11 +18,12 @@ const LoginPage = () => {
   };
 
   const onSuccessUserLogIn = (user) => {
-    dispatch({ type: 'SETACTIVE', payload: user });
+    // user is configuered as  {username , password}
+    dispatch({ type: SETACTIVE, payload: user });
     navigate('/Home');
   };
   const onSuccessAdminLogIn = (admin) => {
-    dispatch({ type: 'SETACTIVE', payload: admin });
+    dispatch({ type: SETACTIVE, payload: admin });
     navigate('/admin');
   };
   const handleLogIn = () => {

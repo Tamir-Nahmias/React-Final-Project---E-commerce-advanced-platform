@@ -3,6 +3,8 @@ import CartItem from './CartItem';
 import { useMemo, useState } from 'react';
 import db from '../../fireBase/fireBase';
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { ORDERS, PRODUCTS } from '../../utilFunctions/collectionsName';
+import { DELETE, UPDATE_INVENTORY_BOUGHT } from '../../redux/consts';
 
 const Cart = ({ setIsCartSlided, isCartSlided }) => {
   const orderState = useSelector((state) => state.order); // Get the entire order state
@@ -19,7 +21,6 @@ const Cart = ({ setIsCartSlided, isCartSlided }) => {
     return Object.values(orderState).filter((order) => order?.amount !== 0);
   }, [orderState]); // Recalculate only when orderState changes
 
-  console.log('orders : ', orders);
   const dispatch = useDispatch();
 
   const addOrder = async () => {
@@ -31,9 +32,9 @@ const Cart = ({ setIsCartSlided, isCartSlided }) => {
         total: order.amount * order.price,
         date: new Date().toLocaleDateString().replaceAll('.', '/'),
       };
-      await addDoc(collection(db, 'orders'), obj);
+      await addDoc(collection(db, ORDERS), obj);
 
-      const productRef = doc(db, 'products', order.categoryId);
+      const productRef = doc(db, PRODUCTS, order.categoryId);
 
       // Fetch the current product data from Firestore
       const productSnap = await getDoc(productRef);
@@ -42,13 +43,12 @@ const Cart = ({ setIsCartSlided, isCartSlided }) => {
         const currentBought = Number(productData.bought || 0);
         const currentInventory = Number(productData.inventory || 0);
         dispatch({
-          type: 'UPDATE_INVENTORY_BOUGHT',
+          type: UPDATE_INVENTORY_BOUGHT,
           payload: {
             ...order,
           },
         });
         if (activeUser.isAllowing) {
-          console.log('order:', order);
           await updateDoc(productRef, {
             bought: currentBought + order.amount,
             inventory: Math.max(currentInventory - order.amount, 0),
@@ -60,7 +60,7 @@ const Cart = ({ setIsCartSlided, isCartSlided }) => {
         }
       }
     }
-    dispatch({ type: 'DELETE', payload: {} });
+    dispatch({ type: DELETE, payload: {} });
   };
 
   return (

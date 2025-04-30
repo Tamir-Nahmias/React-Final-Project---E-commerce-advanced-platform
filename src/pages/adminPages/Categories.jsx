@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { addDocument } from '../../utilFunctions/util';
-import db from '../../fireBase/fireBase';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { addDocument, getAllDocs } from '../../utilFunctions/util';
 import CategoryComp from './CategoryComp';
+import { CATEGORIES } from '../../utilFunctions/collectionsName';
 
 const Categories = () => {
-  const CATEGORIES = 'categories';
   const [categoryName, setCategoryName] = useState('');
   // in order to prevent initial empty rendering
   // of the initial category object - I added blank values
@@ -21,24 +19,11 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    console.log('from use effect of Categories');
-    const q = query(collection(db, CATEGORIES));
-    onSnapshot(q, (querySnapShot) => {
-      setCategories(
-        querySnapShot.docs.map((doc) => {
-          console.log(doc.id);
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-    });
+    getAllDocs(setCategories, CATEGORIES);
   }, []);
 
   return (
     <div className="w-fit flex flex-col justify-self-center items-center">
-      {console.log('from dom Categories')}
       <h2>Categories</h2>
       <div id="category-container">
         <div className="categories-list">

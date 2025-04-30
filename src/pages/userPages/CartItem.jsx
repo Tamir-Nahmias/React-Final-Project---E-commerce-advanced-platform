@@ -1,7 +1,6 @@
 import { memo, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import db from '../../fireBase/fireBase';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { ADDPRODUCT, REMOVE_FROM_CART } from '../../redux/consts';
 
 const CartItem = ({ order }) => {
   const dispatch = useDispatch();
@@ -9,12 +8,12 @@ const CartItem = ({ order }) => {
   const handleClick = (e) => {
     console.log(order);
     dispatch({
-      type: 'ADDPRODUCT',
+      type: ADDPRODUCT,
       payload: { ...order, amount: order.amount ?? 0, change: e.target.name === 'plus' ? 1 : -1 },
     });
   };
   const handleRemove = () => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: { ...order } });
+    dispatch({ type: REMOVE_FROM_CART, payload: { ...order } });
   };
 
   return (

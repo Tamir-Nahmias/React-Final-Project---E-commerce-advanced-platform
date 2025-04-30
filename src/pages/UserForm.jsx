@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { addDocument } from '../utilFunctions/util';
-import { USERS } from '../redux/consts';
+import { SETACTIVE, USERS } from '../redux/consts';
 import db from '../fireBase/fireBase';
 import { doc, updateDoc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UserForm = ({ isToUpdate }) => {
   const dispatch = useDispatch();
-  // const activeUser = useSelector((state) => state.activeUser);
+
   const [activeUser, setActiveUser] = useState(useSelector((state) => state.activeUser));
+  const navigate = useNavigate();
+  const usersPool = useSelector((state) => state.users);
 
   const [details, setDetails] = useState({
     firstname: isToUpdate ? activeUser.firstname : '',
@@ -19,10 +21,7 @@ const UserForm = ({ isToUpdate }) => {
     isAllowing: isToUpdate ? activeUser.isAllowing : false,
     role: 'user',
     joinDate: isToUpdate ? activeUser.joinDate : new Date().toLocaleDateString().replaceAll('.', '/'),
-    products_bought: [
-      { product: 'TV', quantity: 3, date: '1/1/2020' },
-      { product: 'SHIRTS', quantity: 6, date: '1/1/2021' },
-    ],
+    products_bought: [],
   });
 
   const onChangeHandler = (e) => {
@@ -33,13 +32,40 @@ const UserForm = ({ isToUpdate }) => {
     // save to db
     updateDoc(doc(db, USERS, activeUser.id), details);
     //save to redux to reflect changes live in FE
-    dispatch({ type: 'SETACTIVE', payload: { ...details, id: activeUser.id } });
+    dispatch({ type: SETACTIVE, payload: { ...details, id: activeUser.id } });
   };
 
-  const sendForm = (e) => {
+  const sendForm = async (e) => {
     e.preventDefault();
-    !isToUpdate ? addDocument(USERS, details) : isToUpdate ? updateUser() : undefined;
+    // !isToUpdate ? addDocument(USERS, details) : isToUpdate ? updateUser() : undefined;
+    if (!isToUpdate) {
+      const data = await addDocument(USERS, details);
+      console.log(data.id);
+      dispatch({ type: SETACTIVE, payload: { ...details, id: data.id } });
+      navigate('/redirect');
+    } else if (isToUpdate) {
+      updateUser();
+    }
   };
+
+  // const addAsyncDoc = () => {
+  //   return new Promise((resolve, reject) => {
+  //     addDocument(USERS, details);
+  //     resolve('OK');
+  //   });
+  // };
+
+  // const handleRegestration = () => {
+  //   usersPool
+  //     .filter((user) => user.username === details.username && user.password === details.password)
+  //     .map((user) => {
+  //       dispatch({ type: SETACTIVE, payload: user });
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   handleRegestration();
+  // }, []);
 
   return (
     //TODO : Add validation to inputs that the field can't be empty / in password maybe use regex
@@ -84,8 +110,6 @@ const UserForm = ({ isToUpdate }) => {
         <input
           type="checkbox"
           onChange={(e) => setDetails({ ...details, isAllowing: e.target.checked })}
-          // TODO : think of a way to show the current checked status from db
-          // maybe build a small component to be sent with props or think of a custom hooks
           defaultChecked={isToUpdate ? activeUser.isAllowing : false}
         ></input>
         <label className="allow-label">Allow others to see my orders</label>

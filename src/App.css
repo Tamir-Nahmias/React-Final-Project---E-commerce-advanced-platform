@@ -128,7 +128,7 @@ label {
   color: #2b2d42; /* Deep Charcoal Gray for text */
   margin-bottom: 4px;
   display: inline-block;
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
   text-align: start;
   width: 100%;
 }
@@ -144,7 +144,7 @@ input {
   width: 100%;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
 }
 input[type='checkbox'] {
   width: fit-content;
@@ -647,4 +647,11 @@ body {
 #buyesCardButtonSection input {
   width: 4rem;
   text-align: center;
+}
+
+.redirect-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

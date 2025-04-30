@@ -1,9 +1,9 @@
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import React, { memo, useState } from 'react';
 import db from '../../fireBase/fireBase';
+import { CATEGORIES } from '../../utilFunctions/collectionsName';
 
 const CategoryComp = ({ categoryName, categories, setCategories, id }) => {
-  const CATEGORIES = 'categories';
   const [isTextShow, setIsTextShow] = useState(false);
   const [updatedName, setUpdatedName] = useState(categoryName);
   const handleRemove = () => {

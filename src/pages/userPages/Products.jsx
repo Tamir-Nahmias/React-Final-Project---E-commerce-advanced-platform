@@ -2,8 +2,8 @@ import ProductCompBuyers from './ProductCompBuyers';
 import Cart from './Cart';
 import CategoryDropDownList from '../adminPages/CategoryDropDownList';
 import { useEffect, useMemo, useState } from 'react';
-import db from '../../fireBase/fireBase';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { getAllDocs } from '../../utilFunctions/util';
+import { PRODUCTS } from '../../utilFunctions/collectionsName';
 
 const Products = () => {
   const [filters, setfilters] = useState({ category: 'all', slide: 0, search: '' });
@@ -22,27 +22,12 @@ const Products = () => {
   }, [filters, products]);
 
   useEffect(() => {
-    getAllDocs();
+    getAllDocs(setProducts, PRODUCTS);
   }, []);
 
   useEffect(() => {
     minMaxRange();
-    console.log(products);
   }, [products]);
-
-  const getAllDocs = () => {
-    const q = query(collection(db, 'products'));
-    onSnapshot(q, (querySnapShot) => {
-      setProducts(
-        querySnapShot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-    });
-  };
 
   const minMaxRange = () => {
     const x = products.map((product) => {
@@ -65,7 +50,6 @@ const Products = () => {
       >
         <h3> filter by </h3>
         <div id="category-filter">
-          {/* {console.log(filters)} */}
           <CategoryDropDownList onChangeEventHandler={eventHandler} selectedOption={filters.category} />
         </div>
         <div id="range-price-filter">

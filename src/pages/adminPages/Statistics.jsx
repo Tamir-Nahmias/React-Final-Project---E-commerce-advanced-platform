@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import BarChart from './graphs/BarChart';
 import PieChart from './graphs/PieChart';
-import db from '../../fireBase/fireBase';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { getAllDocs } from '../../utilFunctions/util';
+import { ORDERS, USERS } from '../../utilFunctions/collectionsName';
 
 const Statistics = () => {
   const [customers, setCustomers] = useState([]);
@@ -11,36 +11,8 @@ const Statistics = () => {
   const [totalPerCustomer, setTotalPerCustomer] = useState([]);
 
   useEffect(() => {
-    getAllusers();
-    getAllOrders();
-  }, []);
-
-  const getAllusers = useCallback(() => {
-    const q = query(collection(db, 'users'));
-    onSnapshot(q, (querySnapShot) => {
-      setCustomers(
-        querySnapShot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-    });
-  }, []);
-
-  const getAllOrders = useCallback(() => {
-    const q = query(collection(db, 'orders'));
-    onSnapshot(q, (querySnapShot) => {
-      setOrders(
-        querySnapShot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-    });
+    getAllDocs(setCustomers, USERS);
+    getAllDocs(setOrders, ORDERS);
   }, []);
 
   useMemo(() => {

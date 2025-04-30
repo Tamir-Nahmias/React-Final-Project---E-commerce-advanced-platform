@@ -26,20 +26,16 @@ const BarChart = ({ dataForBar }) => {
     [selectedUserBarDisplay]
   );
 
-  // 1. Combine values and labels together
   const combined = dataValues.map((value, index) => ({
     label: dataLables[index],
     value: value,
   }));
 
-  // 2. Sort descending by value
   const sorted = combined.sort((a, b) => b.value - a.value);
 
-  // 3. Separate back into sorted arrays
   const sortedLabels = sorted.map((item) => item.label);
   const sortedDataValues = sorted.map((item) => item.value);
 
-  // 4. Now use these sorted arrays
   const max = Math.max(...sortedDataValues);
   const min = Math.min(...sortedDataValues);
 
@@ -64,7 +60,6 @@ const BarChart = ({ dataForBar }) => {
       {
         label: 'Sales Data',
         data: sortedDataValues, // Y-axis data values
-        // backgroundColor: 'rgba(138, 43, 226, 0.2)', // Light purple background
         backgroundColor: sortedDataValues.map((value) => getColorForValue(value)),
         borderColor: 'rgba(138, 43, 226, 1)', // Solid purple border
 

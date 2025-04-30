@@ -1,29 +1,13 @@
 import { useEffect, useState } from 'react';
-import Table from '../../Table';
-import db from '../../fireBase/fireBase';
-import { addDoc, collection, doc, onSnapshot, query, updateDoc } from 'firebase/firestore';
+import { getAllDocs } from '../../utilFunctions/util';
+import { CATEGORIES } from '../../utilFunctions/collectionsName';
 //default props for generic uses
 const CategoryDropDownList = ({ onChangeEventHandler = () => {}, selectedOption = '' }) => {
-  const CATEGORIES = 'categories';
   const [categories, setCategories] = useState([{ name: '', id: '' }]);
 
   useEffect(() => {
-    getAllDocs();
+    getAllDocs(setCategories, CATEGORIES);
   }, []);
-
-  const getAllDocs = () => {
-    const q = query(collection(db, CATEGORIES));
-    onSnapshot(q, (querySnapShot) => {
-      setCategories(
-        querySnapShot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-    });
-  };
 
   return (
     <div id="category-filter">
