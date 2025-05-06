@@ -9,7 +9,7 @@ import { DELETE, UPDATE_INVENTORY_BOUGHT } from '../../redux/consts';
 const Cart = ({ setIsCartSlided, isCartSlided }) => {
   const orderState = useSelector((state) => state.order); // Get the entire order state
   const activeUser = useSelector((state) => state.activeUser);
-  const inventoryBought = useSelector((state) => state.inventory_bought);
+  // const inventoryBought = useSelector((state) => state.inventory_bought);
   const [isClickedSvg, setIsClickedSvg] = useState(false);
   const handleOnClickSvg = (e) => {
     setIsClickedSvg(!isClickedSvg);
@@ -85,7 +85,7 @@ const Cart = ({ setIsCartSlided, isCartSlided }) => {
         xmlns="http://www.w3.org/2000/svg"
         onClick={handleOnClickSvg}
       >
-        <path d="M10 20l6-6-6-6" stroke="black" stroke-width="2" fill="none" />
+        <path d="M10 20l6-6-6-6" stroke="black" strokeWidth="2" fill="none" />
       </svg>
     </div>
   );

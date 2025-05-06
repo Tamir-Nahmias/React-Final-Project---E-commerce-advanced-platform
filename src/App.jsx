@@ -1,4 +1,4 @@
-import { Link, Routes, useNavigate, Route } from 'react-router';
+import { Routes, Route } from 'react-router';
 import './App.css';
 import LoginPage from './pages/LoginPage';
 import NewUserReg from './pages/NewUserReg';
@@ -21,7 +21,7 @@ import RedirectionPage from './pages/redirectionPage';
 
 function App() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   useEffect(() => {
     //second, on app launch I want to retrieve existing users from fireBase
 

@@ -1,17 +1,14 @@
-import { v4 as uuidv } from "uuid";
+import { v4 as uuidv } from 'uuid';
 
 const Table = ({ data }) => {
   // a way to know the number of attributes , retrieve them in array
   // I assumed that all documents/objects must have the same attributes, a perfect match
   // this why I've selected the first object's attributes
 
-  const arrayOfProprties =
-    data[0] === undefined || data[0] === null
-      ? []
-      : Object.getOwnPropertyNames(data[0]);
+  const arrayOfProprties = data[0] === undefined || data[0] === null ? [] : Object.getOwnPropertyNames(data[0]);
   return (
     <>
-      <table style={{ borderCollapse: "collapse", border: "1px solid black" }}>
+      <table>
         <thead>
           <tr>
             {arrayOfProprties.map((property, index) => {

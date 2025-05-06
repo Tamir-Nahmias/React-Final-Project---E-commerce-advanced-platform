@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Table from '../../Table';
 import { getAllDocs } from '../../utilFunctions/util';
 import { ORDERS, USERS } from '../../utilFunctions/collectionsName';

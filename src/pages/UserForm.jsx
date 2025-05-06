@@ -48,25 +48,6 @@ const UserForm = ({ isToUpdate }) => {
     }
   };
 
-  // const addAsyncDoc = () => {
-  //   return new Promise((resolve, reject) => {
-  //     addDocument(USERS, details);
-  //     resolve('OK');
-  //   });
-  // };
-
-  // const handleRegestration = () => {
-  //   usersPool
-  //     .filter((user) => user.username === details.username && user.password === details.password)
-  //     .map((user) => {
-  //       dispatch({ type: SETACTIVE, payload: user });
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   handleRegestration();
-  // }, []);
-
   return (
     //TODO : Add validation to inputs that the field can't be empty / in password maybe use regex
     <form onSubmit={sendForm}>

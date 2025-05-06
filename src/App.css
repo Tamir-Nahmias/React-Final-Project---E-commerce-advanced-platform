@@ -30,46 +30,44 @@ th {
 table {
   border-collapse: collapse;
   color: #2b2d42; /* Deep Charcoal Gray */
-  /* font-family: 'Roboto', sans-serif; */
   width: 100%;
   border-collapse: collapse;
   background-color: #1a1a40; /* Dark Blue/Purple */
   color: #f0e6ff; /* Light text */
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
   border-radius: 12px;
   overflow: hidden;
 }
 
 thead {
-  background-color: #4b0082; /* Indigo */
-  color: #f0e6ff; /* Light text */
+  background-color: #4b0082;
+  color: #f0e6ff;
 }
 
 /* Table headers */
 th {
-  background-color: #301934; /* Deep purple */
+  background-color: #301934;
   padding: 6px;
   text-align: left;
   font-size: 16px;
   font-weight: bold;
-  text-transform: uppercase; /* Slightly elevate the look */
-  border-bottom: 2px solid #e3f2fd; /* Frosted Sky Blue */
+  text-transform: uppercase;
+  border-bottom: 2px solid #e3f2fd;
 }
 
 /* Table rows */
 td {
-  background-color: #ffffff; /* Clean white for row background */
-  color: #6d6e76; /* Muted Cool Gray */
+  background-color: #ffffff;
+  color: #6d6e76;
   padding: 6px;
   text-align: left;
-  border-bottom: 1px solid #e3f2fd; /* Frosted Sky Blue */
-  transition: background-color 0.3s ease; /* Smooth transition on hover */
+  border-bottom: 1px solid #e3f2fd;
+  transition: background-color 0.3s ease;
 }
 
 /* Hover effects on rows */
 tr:hover td {
-  background-color: #e3f2fd; /* Frosted Sky Blue on hover */
+  background-color: #e3f2fd;
 }
 
 /*------------------------------------------------------------ */
@@ -94,7 +92,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-  background-color: #6a0dad; /* A nice hover effect */
+  background-color: #6a0dad;
   color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -106,10 +104,10 @@ td {
 }
 
 .generic-container {
-  background-color: #ffffff; /* White background for contrast */
+  background-color: #ffffff;
   padding: 30px;
   margin: 20px auto;
-  border-radius: 12px; /* Rounded corners */
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft, subtle shadow */
   border: 3px solid #d1d1d1; /* Slightly darker gray border */
   max-width: fit-content; /*Limit width for a more centered, contained design*/
@@ -118,17 +116,16 @@ td {
 
 .container h1,
 .container p {
-  color: #2b2d42; /* Deep Charcoal Gray for text */
+  color: #2b2d42;
 }
 
 /* Label Styling */
 label {
   font-size: 16px;
-  font-weight: 600; /* Bold for emphasis */
-  color: #2b2d42; /* Deep Charcoal Gray for text */
+  font-weight: 600;
+  color: #2b2d42;
   margin-bottom: 4px;
   display: inline-block;
-  /* font-family: 'Roboto', sans-serif; */
   text-align: start;
   width: 100%;
 }
@@ -160,30 +157,29 @@ input:focus {
 
 /* Input Placeholder Text */
 input::placeholder {
-  color: #6d6e76; /* Muted gray for placeholder text */
-  font-style: italic; /* Subtle style */
+  color: #6d6e76;
+  font-style: italic;
 }
-/* Elegant Greenish Lime .button-for-forms Styling */
+
 .button-for-forms {
-  background-color: #a3d9a5; /* Soft lime green background */
-  color: #2b2d42; /* Deep Charcoal Gray text color */
+  background-color: #a3d9a5;
+  color: #2b2d42;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #a3d9a5; /* Soft lime green border */
-  border-radius: 8px; /* Rounded corners for a smooth, modern look */
-  width: 100%; /* Full-width .button-for-forms */
+  border: 2px solid #a3d9a5;
+  border-radius: 8px;
+  width: 100%;
   cursor: pointer;
-  /* font-family: 'Roboto', sans-serif; */
-  text-transform: uppercase; /* Adds a touch of sophistication */
+  text-transform: uppercase;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   box-sizing: border-box;
 }
 
 /* .button-for-forms Hover Effect */
 .button-for-forms:hover {
-  background-color: #6b9c6a; /* Muted dark green background on hover */
-  color: #ffffff; /* White text on hover */
-  border-color: #6b9c6a; /* Matching dark green border */
+  background-color: #6b9c6a;
+  color: #ffffff;
+  border-color: #6b9c6a;
 }
 
 /* .button-for-forms Focused Effect */
@@ -194,9 +190,9 @@ input::placeholder {
 
 /* Disabled .button-for-forms Styling */
 .button-for-forms:disabled {
-  background-color: #d1e2d1; /* Lighter lime green when disabled */
-  color: #b0b0b0; /* Muted gray text */
-  border-color: #d1e2d1; /* Lighter lime green border */
+  background-color: #d1e2d1;
+  color: #b0b0b0;
+  border-color: #d1e2d1;
   cursor: not-allowed;
 }
 
@@ -225,9 +221,9 @@ input::placeholder {
   margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensures each card fills the available height */
+  height: 100%;
   max-height: 60vh;
-  justify-content: space-between; /* Evenly distributes content */
+  justify-content: space-between;
 }
 
 /* .card-text {
@@ -330,8 +326,8 @@ input::placeholder {
   height: fit-content;
   align-self: flex-start;
   width: 40%;
-  transition: transform 1s ease; /* Smooth transition for sliding */
-  transform: translateX(calc(-100% + 40px)); /* Slide left to the width of the SVG */
+  transition: transform 1s ease;
+  transform: translateX(calc(-100% + 40px));
 }
 
 #products-and-cart {
@@ -347,7 +343,7 @@ input::placeholder {
   transform: translateY(-50%) rotate(180deg);
 }
 .arrow-svg:hover path {
-  stroke: blue; /* Changes color on hover */
+  stroke: blue;
 }
 .arrow-svg-reverse {
   position: absolute;
@@ -369,7 +365,7 @@ input::placeholder {
   margin-block: 25px;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensures each card fills the available height */
+  height: 100%;
 }
 
 .manage-prod-container > div > label {
@@ -394,8 +390,8 @@ input::placeholder {
 
 .prod-upper-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
-  gap: 1rem; /* Spacing between items */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   max-height: 650px;
 }
 .categories-list > div > button,
@@ -403,7 +399,7 @@ input::placeholder {
   /* margin-top: 1rem; */
   margin-inline: 1rem;
   width: fit-content;
-  background-color: #3b82f6; /* Tailwind's blue-500 */
+  background-color: #3b82f6;
   color: white;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -411,12 +407,12 @@ input::placeholder {
 }
 .categories-list > div > button:hover,
 .manage-prod-container > div > button:hover {
-  background-color: #2563eb; /* Tailwind's blue-600 on hover */
-  transform: scale(1.05); /* slight pop on hover */
+  background-color: #2563eb;
+  transform: scale(1.05);
 }
 
 #remove-btn {
-  background-color: #e74c3c; /* Elegant red */
+  background-color: #e74c3c;
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -429,12 +425,12 @@ input::placeholder {
 }
 
 #remove-btn:hover {
-  background-color: #c0392b; /* Slightly darker red on hover */
-  transform: translateY(-2px); /* Subtle lift effect */
+  background-color: #c0392b;
+  transform: translateY(-2px);
 }
 
 #remove-btn:active {
-  background-color: #a93226; /* Even darker red on active */
+  background-color: #a93226;
   transform: translateY(0);
 }
 
@@ -482,7 +478,7 @@ body {
 
 .navigation-bar {
   align-items: center;
-  background-color: #2e1a47; /* Dark purplish background */
+  background-color: #2e1a47;
   padding: 15px 0;
 }
 
@@ -497,25 +493,25 @@ body {
 }
 
 .navigation-bar a:hover {
-  background-color: #6a2c91; /* Dark neon purplish hover */
-  transform: scale(1.1); /* Slight zoom effect on hover */
+  background-color: #6a2c91;
+  transform: scale(1.1);
 }
 
 .navigation-bar a.active {
-  background-color: #9b4d99; /* Neon purplish color for active tab */
+  background-color: #9b4d99;
 }
 
 .div-container-overflow {
-  width: 100%; /* You can adjust the width as needed */
+  width: 100%;
   max-height: 15vh;
-  overflow-y: auto; /* This will add a vertical scrollbar when content exceeds max height */
-  border: 1px solid #ddd; /* Optional, for a border around the container */
-  padding: 15px; /* Optional, for spacing inside the container */
-  background-color: #f7f7f7; /* Optional, for a background color */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: #f7f7f7;
 }
 
 .button-add-new {
-  background-color: #28a745; /* Bright Green */
+  background-color: #28a745;
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -528,35 +524,35 @@ body {
 }
 
 .button-add-new:hover {
-  background-color: #218838; /* Darker Green */
-  transform: translateY(-5px); /* Lift the button */
+  background-color: #218838;
+  transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15), 0 15px 30px rgba(40, 167, 69, 0.3);
 }
 
 .button-add-new:focus {
   outline: none;
-  border: 2px solid #1e7e34; /* Green Focus Border */
+  border: 2px solid #1e7e34;
 }
 
 .button-add-new:active {
-  background-color: #1e7e34; /* Darker Green on Click */
-  transform: translateY(2px); /* Slight Pressed Effect */
+  background-color: #1e7e34;
+  transform: translateY(2px);
 }
 
 /* Main select dropdown button styling */
 .beautiful-dropdown {
-  background: linear-gradient(145deg, #6a11cb, #2575fc); /* Cold purple-blue gradient for the button */
+  background: linear-gradient(145deg, #6a11cb, #2575fc);
   color: white;
-  font-size: 16px; /* Slightly smaller font size for a smaller height */
-  padding: 10px 18px; /* Adjust padding to reduce height */
-  border: 2px solid #5e5c5b; /* Subtle dark border */
-  border-radius: 6px; /* Rounded corners */
+  font-size: 16px;
+  padding: 10px 18px;
+  border: 2px solid #5e5c5b;
+  border-radius: 6px;
   cursor: pointer;
   width: 200px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for shine */
-  appearance: none; /* Removes default styling, allowing custom styles */
-  position: relative; /* For positioning the custom arrow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  position: relative;
 }
 
 /* Hover state for the button */

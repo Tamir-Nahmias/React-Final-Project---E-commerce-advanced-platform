@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import Table from '../../Table';
 import db from '../../fireBase/fireBase';
-import { addDoc, collection, doc, onSnapshot, query, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import CategoryDropDownList from './CategoryDropDownList';
 import { getAllDocs } from '../../utilFunctions/util';
 import { ORDERS, PRODUCTS, USERS } from '../../utilFunctions/collectionsName';

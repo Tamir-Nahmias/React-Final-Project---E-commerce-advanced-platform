@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { ADDPRODUCT, REMOVE_FROM_CART } from '../../redux/consts';
 

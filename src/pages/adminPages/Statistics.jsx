@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import BarChart from './graphs/BarChart';
 import PieChart from './graphs/PieChart';
 import { getAllDocs } from '../../utilFunctions/util';
